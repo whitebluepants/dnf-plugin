@@ -4,7 +4,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
 const BASE_RATE = 0.005 // 基础爆率0.5%
-const EQUIPMENT_PATH = resolve('./resources/equipment.json')
+const EQUIPMENT_PATH = resolve('./plugins/dnf-plugin/resources/equipment.json')
 
 export class TaiChuPlugin extends plugin {
     constructor() {
