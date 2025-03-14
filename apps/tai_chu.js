@@ -4,6 +4,7 @@ import { readFileSync } from 'fs'
 import { resolve } from 'path'
 
 const BASE_RATE = 0.0015 // 基础爆率0.15%
+const WEAPON_RATE = 0.17 // 武器爆率17%
 const EQUIPMENT_PATH = resolve('./plugins/dnf-plugin/resources/equipment.json')
 
 export class TaiChuPlugin extends plugin {
@@ -40,7 +41,11 @@ export class TaiChuPlugin extends plugin {
     }
 
     getRandomItem() {
-        return this.equipmentList[Math.floor(Math.random() * this.equipmentList.length)]
+        const isWeapon = Math.random() < WEAPON_RATE
+        if (isWeapon === true) {
+            return this.equipmentList.weapon[Math.floor(Math.random() * this.equipmentList.weapon.length)]
+        }
+        return this.equipmentList.accessory[Math.floor(Math.random() * this.equipmentList.accessory.length)]
     }
 
     async sendResult(e, count, item) {
